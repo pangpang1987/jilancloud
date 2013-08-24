@@ -1,0 +1,201 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+ v2.0 | 20110126
+ License: none (public domain)
+ http://www.webdesignerdepot.com/2012/08/create-a-stunning-menu-in-css3/
+ */
+
+.dropdown-menu {
+	position:relative;
+	float:left;
+	min-width:160px;
+	padding:5px 0;
+	margin:2px 0 0;
+	list-style:none;
+	background-color:#fff;
+	border:1px solid #ccc;
+	border:1px solid rgba(0,0,0,0.2);
+	*border-right-width:2px;
+	*border-bottom-width:2px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+	box-shadow:0 5px 10px rgba(0,0,0,0.2);
+	-webkit-background-clip:padding-box;
+	-moz-background-clip:padding;
+	background-clip:padding-box
+}
+
+
+ol, ul {
+	list-style:none;
+}
+.clearfix {
+	clear:both;
+}
+#top {
+	background:-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc));
+	background-image:linear-gradient(#fff, #ccc);
+	border-radius:6px;
+	box-shadow:0px 0px 4px 2px rgba(0,0,0,0.4);
+	padding:0 10px;
+	position:relative;
+}
+
+.menu_top li {
+	float:left;
+	position:relative;
+}
+.menu_top li a {
+	color:#444;
+	display:block;
+	font-size:14px;
+	line-height:20px;
+	padding:6px 12px;
+	margin:8px 8px;
+	vertical-align:middle;
+	text-decoration:none;
+}
+.menu_top li a:hover {
+	background:-webkit-gradient(linear, center top, center bottom, from(#ededed), to(#fff));
+	background-image:linear-gradient(#ededed, #fff);
+	border-radius:12px;
+	box-shadow:inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+	color:#222;
+}
+/* Dropdown styles */
+.menu_top ul {
+	position:absolute;
+	left:-9999px;
+	list-style:none;
+	opacity:0;
+	transition:opacity 1s ease;
+}
+.menu_top ul li {
+	float:none;
+}
+.menu_top ul a {
+	white-space:nowrap;
+}
+/* Displays the dropdown on hover and moves back into position */
+.menu_top li:hover ul {
+	left:5px;
+}
+/* Persistent Hover State */
+.menu_top li:hover a {
+	color:#222;
+}
+.menu_top li:hover ul a {
+	background:none;
+}
+.menu_top li:hover ul li a:hover {
+}
+#canvas_animate {
+	border:1px solid;
+	border-color:red;
+	position:absolute;
+	top:80px;
+	left:60px;
+	z-index:200;
+}
+#canvas1 {
+	border:1px solid;
+	border-color:red;
+	position:absolute;
+	top:80px;
+	left:60px;
+	cursor:crosshair;
+	-webkit-user-select:none;
+	z-index:890;
+}
+#canvas_drawing {
+	border:1px solid;
+	border-color:red;
+	position:absolute;
+	top:80px;
+	left:60px;
+	z-index:190;
+}
+#canvas_base {
+	border:1px solid;
+	position:absolute;
+	top:80px;
+	left:60px;
+	z-index:90;
+	/*background-image: url('images/blueprint.png');*/
+}
+#canvas_capture {
+	border:1px solid;
+	position:absolute;
+	top:80px;
+	left:60px;
+	z-index:180;
+}
+div#data_wrapper {
+	position:absolute;
+	margin-left:8px;
+	left:860px;
+	top:50px;
+	border:1px solid;
+	border-color:blue;
+	display:none;
+}
+#mark {
+	height:640px;
+}
+div#message_board {
+	z-index:900;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+div #message_board_alpha {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(169,169,169,0.5);
+	display:block;
+	z-index:1;
+}
+div #message_board_wrapper {
+	position:relative;
+	left:280px;
+	top:240px;
+	z-index:2;
+	border:rgba(169,169,169,0.9) 3px solid;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-khtml-border-radius:6px;
+	-moz-border-radius:6px;
+	background-color:#fffffe;
+	width:320px;
+	height:200px;
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+}
+div #message_board_content {
+	position:relative;
+	color:#838b8b;
+}
+p.message {
+	position:relative;
+	top:-50%;
+	font-family:Arial;
+	font-size:24px;
+	line-height:30px;
+}
+p.spinner {
+	height:30px;
+}
+.dxf_loader {
+	display:inline;
+}
+.message-band {
+	display:none;
+}

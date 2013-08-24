@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+<title>CoConceptualize - Register</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.22.custom.css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<header>
+	<div id="logo">
+		基蓝云矿山内部测试版
+	</div>
+	<ul id="links">
+		<li><a href="index.html">基蓝软件</a></li>
+		<li><a href="register.html">新手上路?</a></li>
+	</ul>
+	<div class="clear"> </div>
+</header>
+
+<div id="main">
+	<div id="register_error" class="error">&nbsp;</div>
+	<div id="register">
+		<form id="fields"  action="php/register.php" method="post">
+			<div>
+				<input type="text" name="username" id="username" class="box-shadow" placeholder="用户名" />
+			</div>
+			<div>
+				<input type="email" name="email" id="email" class="box-shadow" placeholder="Email" />
+			</div>
+			<div>
+				<input type="password" name="password" id="password" class="box-shadow" placeholder="密码" />
+			</div>
+			<div>
+				<input type="password" name="password_confirm" id="password_confirm" class="box-shadow" placeholder="确认密码" />
+			</div>
+			<div>
+				<input type="text" name="fname" id="fname" class="box-shadow" placeholder="Firstname" /></div>
+			<div>
+				<input type="text" name="lname" id="lname" class="box-shadow" placeholder="Lastname" /></div>
+		</form>
+		<div id="register_join">
+			<button id="join">Join Us!</button>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<footer>
+	<p>Copyright &copy; 2013 上海基蓝软件有限公司</p>
+	<ul id="bottom-links">
+		<li><a href="#">关于我们</a></li>
+		<li>//</li>
+		<li><a href="#">联系我们</a></li>
+		<li>//</li>
+		<li><a href="#">网站地图</a></li>
+	</ul>
+	<div class="clear"> </div>
+</footer>
+
+<script src="js/jquery-1.8.0.min.js"></script>
+<script src="js/jquery-ui-1.8.22.custom.min.js"></script>
+<script src="js/register.js"></script>
+<body>
+</html>

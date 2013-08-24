@@ -1,0 +1,191 @@
+html, button, input, select, textarea {
+	font-family: 'Source Sans Pro', arial, sans-serif;
+	font-size: 15px;
+}
+
+textarea:focus, input:focus {
+	outline: none;
+}
+
+::-moz-selection {
+	background: #6188AD;
+	color: #fff;
+	text-shadow: none;
+}
+
+::selection {
+	background: #6188AD;
+	color: #fff;
+	text-shadow: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+	display: block;
+}
+
+html {
+
+}
+
+body {
+
+	background-image: url(../images/bg.gif);
+	background-repeat: repeat;
+	margin: 0 auto;
+	width: 960px;
+	font-size: 1em;
+	line-height: 1.4;
+	color: #2c2c2c;
+}
+
+header {
+	background: #6188AD;
+	padding: 10px;
+	height: 40px;
+	margin-top: 5px;
+	border-radius: 8px;
+}
+
+#logo {
+	float: left;
+	width: 50%;
+	font-size: 32px;
+	color: #E6E6E6;
+}
+
+ul#links {
+	float: right;
+	margin-top: 15px;
+}
+
+ul#links li {
+	display: inline;
+	margin-left: 15px;
+}
+
+ul#links li a {
+	text-decoration: none;
+	color: #BFBFBF;
+}
+
+ul#links li a:hover {
+	border-bottom: 1px dotted #2c2c2c;
+}
+
+#main {
+	margin-top: 70px;
+}
+
+#main p#intro {
+	font-size: 18px;
+	color: #828282;
+	text-align: center;
+	font-style: italic;
+}
+
+::-webkit-input-placeholder {
+	color: #bfbfbf;
+	text-transform: uppercase;
+}
+
+:-moz-placeholder {
+	color: #bfbfbf;
+	text-transform: uppercase;
+}
+
+#login {
+	width: 400px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+}
+
+#login input {
+	width: 90%;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 15px;
+	padding-left: 10px;
+	float: right;
+	color: #9a9a9a;
+	border: 0;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+#login input:focus {
+	background: #595959;
+	color: #6188AD;
+}
+
+#login_status {
+	background-color: #ffafaf;
+	color: #b41919;
+	border: 1px solid #da2525;
+	margin: 8px auto;
+	text-align: center;
+	width: 400px;
+	font-size: 18px;
+	display: none;
+}
+
+.button {
+	width: 400px;
+	height: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 50px;
+	margin-left: -200px;
+}
+
+button {
+	float: right;
+	margin-top: 15px;
+}
+
+button#loginButton {
+	color: #000;
+	font-weight: bold;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 960px;
+	border-top: 1px solid #6188AD;
+	color: #fff;
+	margin: 0 auto;
+}
+
+footer p {
+	float: left;
+}
+
+footer #bottom-links {
+	float: right;
+}
+
+footer #bottom-links li {
+	display: inline;
+	margin-left: 5px;
+}
+
+footer #bottom-links li a {
+	color: #6188AD;
+}
+
+.box-shadow {
+	-moz-box-shadow: 2px 2px 6px #000;
+	-webkit-box-shadow: 2px 2px 6px #000;
+	box-shadow: 2px 2px 6px #000;
+}
+
+.clear {
+	clear: both;
+}

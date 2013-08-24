@@ -1,0 +1,58 @@
+
+#register_error{
+	background-color: #ffafaf;
+	width: 300px;
+	margin: 0 auto;
+	margin-top: -40px;
+	font-size: 14px;
+	color: #b41919;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #da2525;
+	display: none;
+}
+
+#register {
+	width: 70%;
+	margin: 0 auto;
+}
+
+#register #fields {
+	float: left;
+	text-align: right;
+	width: 65%;
+}
+#register #register_join{
+	position:relative;
+	top:20px;
+	left:-100px;
+	float: none;
+	width: 30%;
+	margin: 0 auto;
+}
+
+#register #fields div {
+	margin-bottom: 15px;
+}
+
+#register input {
+	width: 300px;
+	height: 40px;
+	font-size: 20px;
+	color: #9a9a9a;
+	border: 0;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-moz-border-radius: 4px;
+	padding-left: 10px;
+}
+
+#register input:focus {
+	background: #595959;
+	color: #bdd72f;
+}
+
+
+

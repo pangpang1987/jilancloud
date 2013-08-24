@@ -1,0 +1,44 @@
+<?php
+session_start();
+require_once 'edge.inc.php';
+require_once 'fan.inc.php';
+$obj->status = 0;
+if(!isset($_SESSION['project_ID'])){
+	echo(json_encode($obj));
+}
+$project_ID = $_SESSION['project_ID'];
+
+$edges = array();
+$edges = Edge::getAll($project_ID);
+$fans = array();
+$fans = FAN::getAll($project_ID);
+
+
+$obj->fans = $fans;
+//print("This is the nodes:\n");
+//var_dump($edges);
+//var_dump(first_test($edges));
+
+if(first_test($edges,$fans)){
+	foreach ($edges as $edge) {
+		$edge->update();
+	}
+	$obj->status = 1;
+	$obj->Edge = $edges;
+}else{
+	$obj->message = 'CACULATE FAILURE';
+}
+
+
+echo(json_encode($obj));
+/*
+if(!first_test($edges)){
+	die("Error!: The calculate\n");	
+}
+foreach($edges as $edge){
+	$edge->update();
+}
+
+echo json_encode($edges);
+*/
+?>

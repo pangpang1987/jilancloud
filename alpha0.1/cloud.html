@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>绘图测试</title>
+		<link rel="stylesheet" href="default.css"/>
+		<link rel="stylesheet" href="widget.css"/>
+		<link rel="stylesheet" href="css/font-awesome.css"/>
+		<link rel="apple-touch-icon" href="images/jilan-logo.png"/>
+		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+	</head>
+	<body>
+		<div class="message-band">
+			<h3></h3>
+			<p></p>
+		</div>
+		<!--menu id="top">
+			<ul class="menu_top">
+				<li>
+					<a><i class="icon-home"></i>主页</a>
+				</li>
+				<li>
+					<a><i class="icon-pencil"></i>绘制</a>
+					<ul>
+						<li><a>分支</a></li>
+						<li><a>风机</a></li>
+						<li><a>风门</a></li>
+					</ul>
+				</li>
+				<li>
+					<a><i class="icon-cogs"></i>系统</a>
+					<ul>
+						<li><a>重置</a></li>
+					</ul>
+				</li>
+			</ul>
+			</menu-->
+			
+	<menu id="menu_t">
+		<ul class="btn-group">
+			<a class="btn btn-primary" href="#"><i class="icon-pencil"></i>绘制</a>
+			<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+    <ul class="dropdown-menu">
+        <li><a>分支</a></li>
+		<li><a>风机</a></li>
+		<li><a>风门</a></li>
+    </ul>
+    </ul>
+	</menu>
+		<menu id="menu_top">
+			<!--
+			<div class="btn-group open">
+			<a class="btn btn-primary" href="#"><i class="icon-pencil"></i>绘制</a>
+			<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+			<ul class="dropdown-menu">
+			<li>
+			<a href="#"><i class="icon-pencil"></i> Edit</a>
+			</li>
+			<li>
+			<a href="#"><i class="icon-trash"></i> Delete</a>
+			</li>
+			<li>
+			<a href="#"><i class="icon-ban-circle"></i> Ban</a>
+			</li>
+			<li class="divider"></li>
+			<li>
+			<a href="#"><i class="i"></i> Make admin</a>
+			</li>
+			</ul>
+			</div>
+			-->
+			<button id="drawE">
+				分支
+			</button>
+			<button id="capture">
+				捕捉
+			</button>
+			<button id="network_calculate">
+				网络解算
+			</button>
+			<button id="reset">
+				重置
+			</button>
+
+			<button id="drawF">
+				风机
+			</button>
+
+			<button id="drawG">
+				风门
+			</button>
+			
+
+			<progress id="progressBar" value="0" max="100"></progress>
+			<span id="percentage"></span>
+			<input type="file" id="file" name="myfile" />
+			<input type="button" onclick="UpladFile('php/dxf_uploader.php')" value="上传" />
+		</menu>
+
+		<div class="canvas">
+			<canvas id="canvas1" height="600px" width="800px"></canvas>
+			<canvas id="canvas_base" height="600px" width="800px"></canvas>
+			<canvas id="canvas_capture" height="600px" width="800px"></canvas>
+			<canvas id="canvas_drawing" height="600px" width="800px"></canvas>
+			<canvas id="canvas_animate" height="600px" width="800px"></canvas>
+		</div>
+
+		<div id="mark"></div>
+		<div id="mouse"></div>
+		<div id="sys"></div>
+		<div id="notice"></div>
+
+		<div id="data_wrapper" class="data">
+
+			<div class="notif notif-white data">
+				<h3 class="notif-title">计算</h3>
+				<p>
+					<a href="index.html">Nasa</a> liked Mars by Curiosity Rover.
+					<br/>
+					42 minutes ago
+				</p>
+				<a href="index.html" class="notif-close">Close</a>
+			</div>
+
+			<form class="node element">
+				<p class="type">
+					节点
+				</p>
+				<p class="attribute">
+					<input class="node" type="hidden" name="ID"/>
+				</p>
+				<p class="attribute">
+					<input class="node" type="hidden" name="AuthKey"/>
+				</p>
+				<p class="attribute">
+					名称:
+					<input class="node" type="text" name="name"/>
+				</p>
+				<p class="attribute">
+					X:
+					<input class="node" type="text" name="coord[x]"/>
+				</p>
+				<p class="attribute">
+					Y:
+					<input class="node" type="text" name="coord[y]"/>
+				</p>
+			</form>
+			<form class="edge element">
+				<p class="type">
+					分支
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="ID"/>
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="AuthKey"/>
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="sNodeAuthKey"/>
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="eNodeAuthKey"/>
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="sNode"/>
+				</p>
+				<p class="attribute">
+					<input class="edge" type="hidden" name="eNode"/>
+				</p>
+
+				<p class="attribute">
+					名称:
+					<input class="edge" type="text" name="name"/>
+				</p>
+				<p class="attribute">
+					R:
+					<input class="edge" type="text" name="R"/>
+				</p>
+				<p class="attribute">
+					Q0:
+					<input class="edge" type="text" name="Q0"/>
+				</p>
+				<p class="attribute">
+					Q:
+					<input readonly class="edge" type="text" name="Q"/>
+				</p>
+				<p class="attribute">
+					H:
+					<input class="edge" type="text" name="H"/>
+				</p>
+			</form>
+
+			<form class="fan element">
+				<p class="type">
+					风机
+				</p>
+				<p class="attribute">
+					<input class="fan" type="hidden" class="fan" name="ID"/>
+				</p>
+				<p class="attribute">
+					<input class="fan" type="hidden" name="AuthKey"/>
+				</p>
+				<p class="attribute">
+					<input class="fan" type="hidden" class="fan" name="edge"/>
+				</p>
+				<p class="attribute">
+					<input class="fan" type="hidden" class="fan" name="edgeAuthKey"/>
+				</p>
+
+				<p class="attribute">
+					<input class="fan" type="hidden" class="fan" name="coord[x]"/>
+				</p>
+				<p class="attribute">
+					<input class="fan" type="hidden" class="fan" name="coord[y]"/>
+				</p>
+
+				<p class="attribute">
+					名称:
+					<input class="fan" type="text" class="fan" name="name"/>
+				</p>
+				<p class="attribute">
+					Q:
+					<input class="fan" name="Q"/>
+				</p>
+				<p class="attribute">
+					H:
+					<input class="fan" name="H"/>
+				</p>
+				<p class="attribute">
+					a0:
+					<input class="fan" name="A[a0]"/>
+				</p>
+				<p class="attribute">
+					a1:
+					<input class="fan" name="A[a1]"/>
+				</p>
+				<p class="attribute">
+					a2:
+					<input class="fan" name="A[a2]"/>
+				</p>
+			</form>
+
+			<button id="update" class="data">
+				确定
+			</button>
+			<button id="update_cancel" class="data">
+				取消
+			</button>
+			<button id="delete" class="data">
+				删除
+			</button>
+
+			<div class="data fan switch particular">
+				<input type="radio" class="switch-input" name="view" value="on" id="fan_control_on" checked>
+				<label for="fan_control_on" class="fan switch-label switch-label-off">开机</label>
+				<input type="radio" class="switch-input" name="view" value="off" id="fan_control_off">
+				<label for="fan_control_off" class="fan switch-label switch-label-on">关机</label>
+				<span class="switch-selection"></span>
+			</div>
+		</div>
+		<div id="message_board" class="message_board">
+			<div id="message_board_wrapper" class="message_board">
+				<div id="message_board_content" class="message_board message_content">
+					<p id="spinner" class="message_board spinner"></p>
+					<p class="message">
+						初始化系统
+					</p>
+				</div>
+			</div>
+			<div id="message_board_alpha" class="message_board"></div>
+		</div>
+	</body>
+	<script src="js/spin.js" type="text/javascript"></script>
+	<script src="js/jilancloud-object.js" type="text/javascript"></script>
+	<script src="js/form.js" type="text/javascript"></script>
+</html>

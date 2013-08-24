@@ -1,0 +1,137 @@
+<?php
+require_once 'connectDB-PDO.php';
+require_once 'status.inc.php';
+class User {
+	public $ID;
+	public $username;
+	public $email;
+	public $firstname;
+	public $lastname;
+	public $auth;
+	function __construct($id, $name, $email, $firstname, $lastname, $auth) {
+		$this -> ID = (int)$id;
+		$this -> username = $name;
+		$this -> email = $email;
+		$this -> firstname = $firstname ? $firstname : NULL;
+		$this -> lastname = $lastname ? $lastname : NULL;
+		$this -> auth = $auth ? $auth : NULL;
+	}
+
+}
+
+function isNameOccupied($username) {
+	try {
+		$dbc = new DBC();
+		$dbh = $dbc -> connect();
+		$sql = "SELECT COUNT(ID) FROM User WHERE user_name = ? LIMIT 1";
+		$sth = $dbh -> prepare($sql);
+		$sth -> execute(array($username));
+		$result = (int)$sth -> fetchColumn();
+		$dbc -> disconnect();
+		if ($result > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	} catch(PDOException $e) {
+		error($e -> getMessage());
+	}
+}
+
+function isEmailOccupied($email) {
+	try {
+		$dbc = new DBC();
+		$dbh = $dbc -> connect();
+		$sql = "SELECT COUNT(ID) FROM User WHERE Email = ? LIMIT 1";
+		$sth = $dbh -> prepare($sql);
+		$sth -> execute(array($email));
+		$result = (int)$sth -> fetchColumn();
+		$dbc -> disconnect();
+		if ($result > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	} catch(PDOException $e) {
+		error($e -> getMessage());
+	}
+}
+
+function register($username, $email, $password, $firstname, $lastname) {
+
+	try {
+		$dbc = new DBC();
+		$dbh = $dbc -> connect();
+		$sql = 'INSERT INTO User(user_name,Email,password,first_name,last_name,create_time) VALUES (?,?,?,?,?,CURRENT_TIMESTAMP)';
+		$sth = $dbh -> prepare($sql);
+		$salt1 = md5(sha1($password));
+		$salt2 = sha1($password);
+		$salt = 'JilanSoft';
+		$password = $salt1 . $username . $salt . $password . $salt2;
+		$pwd = hash('sha512', $password);
+		$sth -> execute(array($username, $email, $pwd, $firstname, $lastname));
+		$uid = (int)$dbh -> lastInsertId();
+
+		$sql = 'INSERT INTO Project(create_time,create_uid,update_uid) VALUES(CURRENT_TIMESTAMP,?,?)';
+		$sth = $dbh -> prepare($sql);
+		$sth -> execute(array($uid, $uid));
+		$pid = (int)$dbh -> lastInsertId();
+
+		$sql = 'INSERT INTO UserProject(uID,pID,authority) VALUES (?,?,"owner")';
+		$sth = $dbh -> prepare($sql);
+		$sth -> execute(array($uid, $pid));
+		$dbc -> disconnect();
+		return $pid;
+	} catch(PDOException $e) {
+		error($e->getMessage());
+	}
+}
+
+function login($username, $password) {
+	try {
+		$dbc = new DBC();
+		$dbh = $dbc -> connect();
+		$sql = "SELECT ID,user_name,Email,first_name,last_name FROM User WHERE user_name = ? AND password = ? LIMIT 1";
+		$sth = $dbh -> prepare($sql);
+		$salt1 = md5(sha1($password));
+		$salt2 = sha1($password);
+		$salt = 'JilanSoft';
+		$password = $salt1 . $username . $salt . $password . $salt2;
+		$pwd = hash('sha512', $password);
+		$sth -> execute(array($username, $pwd));
+		$result = $sth -> fetch(PDO::FETCH_OBJ);
+		$num = count($result);
+		if (!$result -> ID) {
+			$dbc -> disconnect();
+			$dbc = NULL;
+			return FALSE;
+		} else {
+			$user = new User($result -> ID, $result -> user_name, $result -> Email, $result -> firstname, $result -> lastname, NULL);
+			if ($HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"]) {
+				$ip = $HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"];
+			} elseif ($HTTP_SERVER_VARS["HTTP_CLIENT_IP"]) {
+				$ip = $HTTP_SERVER_VARS["HTTP_CLIENT_IP"];
+			} elseif ($HTTP_SERVER_VARS["REMOTE_ADDR"]) {
+				$ip = $HTTP_SERVER_VARS["REMOTE_ADDR"];
+			} elseif (getenv("HTTP_X_FORWARDED_FOR")) {
+				$ip = getenv("HTTP_X_FORWARDED_FOR");
+			} elseif (getenv("HTTP_CLIENT_IP")) {
+				$ip = getenv("HTTP_CLIENT_IP");
+			} elseif (getenv("REMOTE_ADDR")) {
+				$ip = getenv("REMOTE_ADDR");
+			}
+			else{
+				$ip = 'empty';
+			}			
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			$sql = "UPDATE User SET last_access_time = CURRENT_TIMESTAMP ,last_access_ip = '$ip',last_access_agent = '$browser' WHERE ID = $result->ID ";
+			$dbh -> exec($sql);
+			$dbc -> disconnect();
+			$dbc = NULL;
+			return $user;
+		}
+	} catch(PDOException $e) {
+		error($e -> getMessage());
+	}
+}
+?>

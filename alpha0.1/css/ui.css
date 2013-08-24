@@ -1,0 +1,68 @@
+#canvas1{
+	position:absolute;
+	border: 2px solid #333;
+	z-index: 890
+}
+#canvas_base{
+	position:absolute;
+	border:2px solid transparent;
+	z-index:90;
+	background:#FFFFFE;
+}
+#canvas_drawing {
+	position:absolute;
+	border:2px solid transparent;
+	z-index:190;
+}
+#canvas_capture {
+	position:absolute;
+	border:2px solid transparent;
+	z-index:180;
+	
+}
+#canvas_animate {
+	position:absolute;
+	border:2px solid transparent;
+	z-index:170;
+}
+
+body{
+	background:#F6F6F6 url(../images/bg.png) repeat fixed;
+}
+#toolbar{
+	margin-bottom:20px;
+}
+.form-control[disabled]{
+	background-color:#fff;
+}
+
+#badge-draw.active{
+	background-color:#fff;
+	color: #333;
+}
+
+
+.mouse-drawing{
+	cursor:crosshair;
+}
+.mouse-pointing{
+	cursor:pointer;
+}
+.mouse-moving{
+	cursor:move;
+}
+
+a.accordion-toggle{
+	color:#2a6496;
+}
+a.accordion-toggle.collapsed{
+	color:#3a87ad;/*#428bca;*/
+}
+a.accordion-toggle:hover{
+	text-decoration: none;
+	color:#2a6496;
+}
+
+#info-container{
+	overflow-y: auto;
+}
